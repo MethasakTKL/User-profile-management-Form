@@ -11,25 +11,28 @@ import {
 import Grid from "@mui/material/Grid2";
 
 interface FormData {
-    name: string;
-    lastName: string;
-    email: string;
-    gender: string;
-    hobbies: string[];
-    status: string;
-    note: string;
-    confirmPDPA: boolean;
-  }
+  name: string;
+  lastName: string;
+  email: string;
+  gender: string;
+  hobbies: string[];
+  status: string;
+  note: string;
+  confirmPDPA: boolean;
+}
 
-  interface RessultFormProps {
-    index: number;
-    data: FormData;
-    onDelete: () => void; 
-  }
-  
-  
-  export default function ResultForm({ index, data, onDelete}: RessultFormProps) {
-    return (
+interface RessultFormProps {
+  index: number;
+  data: FormData;
+  onDelete: () => void;
+}
+
+export default function ResultForm({
+  index,
+  data,
+  onDelete,
+}: RessultFormProps) {
+  return (
     <Box sx={{ minWidth: "400px", paddingBottom: 1 }}>
       <Paper sx={{ margin: 2, padding: 2 }}>
         <Grid container spacing={2}>
@@ -44,22 +47,22 @@ interface FormData {
             </IconButton>
           </Grid>
           <Grid size={6}>
-            <Typography>Name: {data.name} {data.lastName}</Typography>
+            <Typography>Name: {data.name || data.lastName || "-"}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Email: {data.email}</Typography>
+            <Typography>Email: {data.email || "-"}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Gender: {data.gender}</Typography>
+            <Typography>Gender: {data.gender || "-"}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Hobby: {data.hobbies.join(", ")}</Typography>
+            <Typography>Hobby: {data.hobbies.join(", ") || "-"}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Status: {data.status}</Typography>
+            <Typography>Status: {data.status || "-"}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Note: {data.note}</Typography>
+            <Typography>Note: {data.note || "-"}</Typography>
           </Grid>
           <Grid size={12}>
             <FormControlLabel

@@ -140,7 +140,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
             />
           </Grid>
 
-          <Grid size={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <FormControl>
               <FormLabel>Gender</FormLabel>
               <RadioGroup
@@ -167,7 +167,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid size={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <FormControl>
               <FormLabel>Hobby</FormLabel>
               <RadioGroup row name="gender-radio-buttons-group">
