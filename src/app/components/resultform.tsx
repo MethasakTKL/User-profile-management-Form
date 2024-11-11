@@ -53,7 +53,7 @@ interface FormData {
             <Typography>Gender: {data.gender}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Hobby: {data.hobbies}</Typography>
+            <Typography>Hobby: {data.hobbies.join(", ")}</Typography>
           </Grid>
           <Grid size={6}>
             <Typography>Status: {data.status}</Typography>

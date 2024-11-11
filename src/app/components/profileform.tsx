@@ -34,7 +34,7 @@ interface FormData {
 }
 
 export default function ProfileForm({ onSubmit }: ProfileformProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     lastName: "",
     email: "",
@@ -77,6 +77,15 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
     }));
   };
 
+  const handleHobbyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      hobbies: checked
+        ? [...prev.hobbies, value] // if checked
+        : prev.hobbies.filter((hobby) => hobby !== value), // not checked
+    }));
+  };
   return (
     <Box sx={{ minWidth: "400px" }}>
       <Typography variant="h4" sx={{ textAlign: "center" }}>
@@ -163,22 +172,47 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
               <FormLabel>Hobby</FormLabel>
               <RadioGroup row name="gender-radio-buttons-group">
                 <FormControlLabel
-                  control={<Checkbox name="hobbies" value="Game" />}
+                  control={
+                    <Checkbox
+                      name="hobbies"
+                      value="Game"
+                      checked={formData.hobbies.includes("Game")}
+                      onChange={handleHobbyChange}
+                    />
+                  }
                   label="Game"
                 />
                 <FormControlLabel
-                  value="Music"
-                  control={<Checkbox />}
+                  control={
+                    <Checkbox
+                      name="hobbies"
+                      value="Music"
+                      checked={formData.hobbies.includes("Music")}
+                      onChange={handleHobbyChange}
+                    />
+                  }
                   label="Music"
                 />
                 <FormControlLabel
-                  value="Craft"
-                  control={<Checkbox />}
+                  control={
+                    <Checkbox
+                      name="hobbies"
+                      value="Craft"
+                      checked={formData.hobbies.includes("Craft")}
+                      onChange={handleHobbyChange}
+                    />
+                  }
                   label="Craft"
                 />
                 <FormControlLabel
-                  value="Reading"
-                  control={<Checkbox />}
+                  control={
+                    <Checkbox
+                      name="hobbies"
+                      value="Reading"
+                      checked={formData.hobbies.includes("Reading")}
+                      onChange={handleHobbyChange}
+                    />
+                  }
                   label="Reading"
                 />
               </RadioGroup>
