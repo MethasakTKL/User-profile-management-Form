@@ -19,12 +19,12 @@ import Grid from "@mui/material/Grid2";
 
 export default function ProfileForm() {
   return (
-    <Box>
+    <Box sx={{minWidth: "400px"}}>
       <Typography variant="h4" sx={{ textAlign: "center" }}>
         Profile management
       </Typography>
 
-      <Paper sx={{ margin: 3, padding: 2 }}>
+      <Paper sx={{ margin: 3, padding: 2, }}>
         <Grid container spacing={2}>
           <Grid size={6}>
             <TextField fullWidth id="name" label="Name" variant="outlined" />
@@ -106,7 +106,7 @@ export default function ProfileForm() {
           <Grid size={12}>
             <TextField fullWidth id="note" label="Note" variant="outlined" />
           </Grid>
-          <Grid container size={12} sx={{justifyContent:'flex-end'}}>
+          <Grid container size={12} sx={{ justifyContent: "flex-end" }}>
             <Stack spacing={1} direction="row">
               <Button variant="contained">Reset</Button>
               <Button variant="contained">Submit</Button>

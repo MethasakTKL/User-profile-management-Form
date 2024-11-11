@@ -10,11 +10,14 @@ export default function Home() {
     <Box>
       <PageAppBar />
       <Grid container spacing={2} paddingTop={10}>
-        <Grid size={6}>
+        <Grid size={5}>
           <ProfileForm />
         </Grid>
-        <Grid size={6}>
+        <Grid size={7}>
           <ResultForm />
+          <ResultForm />
+          <ResultForm />
+
         </Grid>
       </Grid>
     </Box>
