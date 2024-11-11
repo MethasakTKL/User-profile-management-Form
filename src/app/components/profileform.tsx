@@ -11,55 +11,147 @@ import {
   Radio,
   RadioGroup,
   Select,
+  SelectChangeEvent,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import { useState } from "react";
 
-export default function ProfileForm() {
+interface ProfileformProps {
+  onSubmit: (data: FormData) => void;
+}
+interface FormData {
+  name: string;
+  lastName: string;
+  email: string;
+  gender: string;
+  hobbies: string[];
+  status: string;
+  note: string;
+  confirmPDPA: boolean;
+}
+
+export default function ProfileForm({ onSubmit }: ProfileformProps) {
+  const [formData, setFormData] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    gender: "",
+    hobbies: [],
+    status: "",
+    note: "",
+    confirmPDPA: false,
+  });
+
+  const handleReset = () => {
+    setFormData({
+      name: "",
+      lastName: "",
+      email: "",
+      gender: "",
+      hobbies: [],
+      status: "",
+      note: "",
+      confirmPDPA: false,
+    });
+  };
+
+  const handleSubmit = () => {
+    onSubmit(formData);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSelectChange = (e: SelectChangeEvent<string>) => {
+    setFormData((prev) => ({
+      ...prev,
+      status: e.target.value as string,
+    }));
+  };
+
   return (
-    <Box sx={{minWidth: "400px"}}>
+    <Box sx={{ minWidth: "400px" }}>
       <Typography variant="h4" sx={{ textAlign: "center" }}>
         Profile management
       </Typography>
 
-      <Paper sx={{ margin: 3, padding: 2, }}>
+      <Paper sx={{ margin: 2, padding: 2 }}>
         <Grid container spacing={2}>
           <Grid size={6}>
-            <TextField fullWidth id="name" label="Name" variant="outlined" />
+            <TextField
+              fullWidth
+              id="name"
+              name="name"
+              label="Name"
+              variant="outlined"
+              value={formData.name}
+              onChange={handleInputChange}
+            />
           </Grid>
           <Grid size={6}>
             <TextField
               fullWidth
               id="lastname"
+              name="lastName"
               label="Lastname"
               variant="outlined"
+              value={formData.lastName}
+              onChange={handleInputChange}
             />
           </Grid>
           <Grid size={12}>
-            <TextField fullWidth id="email" label="Email" variant="outlined" />{" "}
+            <TextField
+              fullWidth
+              id="email"
+              name="email"
+              label="Email"
+              variant="outlined"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
           </Grid>
           <Grid size={12}>
-            <FormControlLabel control={<Checkbox />} label="ConfirmPDPA" />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="confirmPDPA"
+                  checked={formData.confirmPDPA}
+                  onChange={handleInputChange}
+                />
+              }
+              label="ConfirmPDPA"
+            />
           </Grid>
 
           <Grid size={6}>
             <FormControl>
               <FormLabel>Gender</FormLabel>
-              <RadioGroup row name="gender-radio-buttons-group">
+              <RadioGroup
+                row
+                name="gender"
+                value={formData.gender}
+                onChange={handleInputChange}
+              >
                 <FormControlLabel
-                  value="female"
+                  value="Female"
                   control={<Radio />}
                   label="Female"
                 />
                 <FormControlLabel
-                  value="male"
+                  value="Male"
                   control={<Radio />}
                   label="Male"
                 />
                 <FormControlLabel
-                  value="other"
+                  value="Other"
                   control={<Radio />}
                   label="Other"
                 />
@@ -71,8 +163,7 @@ export default function ProfileForm() {
               <FormLabel>Hobby</FormLabel>
               <RadioGroup row name="gender-radio-buttons-group">
                 <FormControlLabel
-                  value="Game"
-                  control={<Checkbox />}
+                  control={<Checkbox name="hobbies" value="Game" />}
                   label="Game"
                 />
                 <FormControlLabel
@@ -96,7 +187,11 @@ export default function ProfileForm() {
           <Grid size={12}>
             <FormControl fullWidth>
               <InputLabel>Status</InputLabel>
-              <Select label="Status">
+              <Select
+                label="Status"
+                value={formData.status}
+                onChange={handleSelectChange}
+              >
                 <MenuItem value={"Single"}>Single</MenuItem>
                 <MenuItem value={"Married"}>Married</MenuItem>
                 <MenuItem value={"Divorce"}>Divorce</MenuItem>
@@ -104,12 +199,24 @@ export default function ProfileForm() {
             </FormControl>
           </Grid>
           <Grid size={12}>
-            <TextField fullWidth id="note" label="Note" variant="outlined" />
+            <TextField
+              fullWidth
+              id="note"
+              name="note"
+              label="Note"
+              variant="outlined"
+              value={formData.note}
+              onChange={handleInputChange}
+            />
           </Grid>
           <Grid container size={12} sx={{ justifyContent: "flex-end" }}>
             <Stack spacing={1} direction="row">
-              <Button variant="contained">Reset</Button>
-              <Button variant="contained">Submit</Button>
+              <Button variant="contained" onClick={handleReset}>
+                Reset
+              </Button>
+              <Button variant="contained" onClick={handleSubmit}>
+                Submit
+              </Button>
             </Stack>
           </Grid>
         </Grid>

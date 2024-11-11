@@ -10,43 +10,61 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
-export default function ResultForm() {
-  return (
+interface FormData {
+    name: string;
+    lastName: string;
+    email: string;
+    gender: string;
+    hobbies: string[];
+    status: string;
+    note: string;
+    confirmPDPA: boolean;
+  }
+
+  interface RessultFormProps {
+    index: number;
+    data: FormData;
+    onDelete: () => void; 
+  }
+  
+  
+  export default function ResultForm({ index, data, onDelete}: RessultFormProps) {
+    return (
     <Box sx={{ minWidth: "400px", paddingBottom: 1 }}>
-      <Paper sx={{ margin: 1, padding: 2 }}>
+      <Paper sx={{ margin: 2, padding: 2 }}>
         <Grid container spacing={2}>
           <Grid size={11}>
             <Typography sx={{ fontWeight: "bold", fontSize: 22 }}>
-              USER
+              USER {index + 1}
             </Typography>
           </Grid>
           <Grid size={1}>
-            <IconButton>
+            <IconButton onClick={onDelete}>
               <DeleteOutline />
             </IconButton>
           </Grid>
           <Grid size={6}>
-            <Typography>Name: -</Typography>
+            <Typography>Name: {data.name} {data.lastName}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Email: -</Typography>
+            <Typography>Email: {data.email}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Gender: -</Typography>
+            <Typography>Gender: {data.gender}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Hobby: -</Typography>
+            <Typography>Hobby: {data.hobbies}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Status: -</Typography>
+            <Typography>Status: {data.status}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Note: -</Typography>
+            <Typography>Note: {data.note}</Typography>
           </Grid>
           <Grid size={12}>
             <FormControlLabel
               disabled
-              control={<Checkbox />}
+              control={<Checkbox checked={data.confirmPDPA} />}
               label="ConfirmPDPA"
             />
           </Grid>
