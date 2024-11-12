@@ -83,7 +83,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
       ...prev,
       hobbies: checked
         ? [...prev.hobbies, value] // if checked
-        : prev.hobbies.filter((hobby) => hobby !== value), // not checked
+        : prev.hobbies.filter((hobby) => hobby !== value), // not checked 
     }));
   };
   return (

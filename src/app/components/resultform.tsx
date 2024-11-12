@@ -47,7 +47,15 @@ export default function ResultForm({
             </IconButton>
           </Grid>
           <Grid size={6}>
-            <Typography>Name: {data.name || data.lastName || "-"}</Typography>
+            <Typography>
+              Name:{" "}
+              {data.name || data.lastName
+                ? `${data.name || ""}${data.name && data.lastName ? " " : ""}${
+                    data.lastName || ""
+                  }`
+                : "-"}
+              {/* Name + " " + lastname   -> " " -> must have {name} + {lastname}               */}
+            </Typography>
           </Grid>
           <Grid size={6}>
             <Typography>Email: {data.email || "-"}</Typography>
