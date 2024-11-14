@@ -66,7 +66,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ? checked : value, //if input is checkbox type
     }));
   };
 
@@ -82,7 +82,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
     setFormData((prev) => ({
       ...prev,
       hobbies: checked
-        ? [...prev.hobbies, value] // if checked
+        ? [...prev.hobbies, value] // if checked box will add to [] 
         : prev.hobbies.filter((hobby) => hobby !== value), // not checked 
     }));
   };

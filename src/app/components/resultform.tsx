@@ -54,7 +54,7 @@ export default function ResultForm({
                     data.lastName || ""
                   }`
                 : "-"}
-              {/* Name + " " + lastname   -> " " -> must have {name} + {lastname}               */}
+              {/* Name + " " + lastname   : " " -> must have {name} + {lastname}               */}
             </Typography>
           </Grid>
           <Grid size={6}>
@@ -64,7 +64,7 @@ export default function ResultForm({
             <Typography>Gender: {data.gender || "-"}</Typography>
           </Grid>
           <Grid size={6}>
-            <Typography>Hobby: {data.hobbies.join(", ") || "-"}</Typography>
+            <Typography>Hobby: {data.hobbies.join(", ") || "-"}</Typography> 
           </Grid>
           <Grid size={6}>
             <Typography>Status: {data.status || "-"}</Typography>
