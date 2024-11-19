@@ -2,9 +2,9 @@
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 //Import Components
-import PageAppBar from "./components/pageappbar";
-import ProfileForm from "./components/profileform";
-import ResultForm from "./components/resultform";
+import PageAppBar from "./components/PageAppBar";
+import ProfileForm from "./components/ProfileForm";
+import ResultForm from "./components/ResultForm";
 import { useState } from "react";
 import { FormData } from "./types/profileform";
 export default function Home() {
