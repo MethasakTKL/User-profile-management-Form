@@ -9,17 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-
-interface FormData {
-  name: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  hobbies: string[];
-  status: string;
-  note: string;
-  confirmPDPA: boolean;
-}
+import { FormData } from "../types/profileform";
 
 interface RessultFormProps {
   index: number;

@@ -6,16 +6,7 @@ import PageAppBar from "./components/pageappbar";
 import ProfileForm from "./components/profileform";
 import ResultForm from "./components/resultform";
 import { useState } from "react";
-interface FormData {
-  name: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  hobbies: string[];
-  status: string;
-  note: string;
-  confirmPDPA: boolean;
-}
+import { FormData } from "./types/profileform";
 export default function Home() {
   const [results, setResults] = useState<FormData[]>([]);
 

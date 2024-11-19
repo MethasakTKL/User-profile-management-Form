@@ -18,44 +18,29 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { useState } from "react";
+import { FormData } from "../types/profileform";
+
+const initValue: FormData = {
+  id:0,
+  name: "",
+  lastName: "",
+  email: "",
+  gender: "",
+  hobbies: [],
+  status: "",
+  note: "",
+  confirmPDPA: false,
+};
 
 interface ProfileformProps {
   onSubmit: (data: FormData) => void;
 }
-interface FormData {
-  name: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  hobbies: string[];
-  status: string;
-  note: string;
-  confirmPDPA: boolean;
-}
 
 export default function ProfileForm({ onSubmit }: ProfileformProps) {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    lastName: "",
-    email: "",
-    gender: "",
-    hobbies: [],
-    status: "",
-    note: "",
-    confirmPDPA: false,
-  });
+  const [formData, setFormData] = useState<FormData>(initValue);
 
   const handleReset = () => {
-    setFormData({
-      name: "",
-      lastName: "",
-      email: "",
-      gender: "",
-      hobbies: [],
-      status: "",
-      note: "",
-      confirmPDPA: false,
-    });
+    setFormData(initValue);
   };
 
   const handleSubmit = () => {
@@ -82,8 +67,8 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
     setFormData((prev) => ({
       ...prev,
       hobbies: checked
-        ? [...prev.hobbies, value] // if checked box will add to [] 
-        : prev.hobbies.filter((hobby) => hobby !== value), // not checked 
+        ? [...prev.hobbies, value] // if checked box will add to []
+        : prev.hobbies.filter((hobby) => hobby !== value), // not checked
     }));
   };
   return (
@@ -245,10 +230,10 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
           </Grid>
           <Grid container size={12} sx={{ justifyContent: "flex-end" }}>
             <Stack spacing={1} direction="row">
-              <Button variant="contained" onClick={handleReset}>
+              <Button type="reset" variant="contained" onClick={handleReset}>
                 Reset
               </Button>
-              <Button variant="contained" onClick={handleSubmit}>
+              <Button type="submit" variant="contained" onClick={handleSubmit}>
                 Submit
               </Button>
             </Stack>
