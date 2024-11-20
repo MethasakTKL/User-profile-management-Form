@@ -45,6 +45,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
 
   const handleSubmit = () => {
     onSubmit(formData);
+    console.log(formData)
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

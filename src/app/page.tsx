@@ -7,14 +7,18 @@ import ProfileForm from "./components/ProfileForm";
 import ResultForm from "./components/ResultForm";
 import { useState } from "react";
 import { FormData } from "./types/profileform";
+
 export default function Home() {
   const [results, setResults] = useState<FormData[]>([]);
+  const [currentId, setCurrentId] = useState<number>(0);
 
   const handleFormSubmit = (data: FormData) => {
-    setResults((prev) => [...prev, data]);
+    const newData = { ...data, id: currentId };
+    setResults((prev) => [...prev, newData]);
+    setCurrentId((prev) => prev + 1);
   };
-  const handleDelete = (index: number) => {
-    setResults((prev) => prev.filter((_, i) => i !== index));
+  const handleDelete = (id: string | number) => {
+    setResults((prev) => prev.filter((item) => item.id !== id));
   };
   return (
     <Box>
@@ -31,10 +35,10 @@ export default function Home() {
         <Grid size={{ xs: 12, md: 7 }}>
           {results.map((result, index) => (
             <ResultForm
-              key={index}
+              key={result.id}
               index={index}
               data={result}
-              onDelete={() => handleDelete(index)}
+              onDelete={() => handleDelete(result.id)}
             />
           ))}
         </Grid>
