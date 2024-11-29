@@ -21,11 +21,11 @@ import { useState } from "react";
 import { FormData } from "../types/profileform";
 
 const initValue: FormData = {
-  id:0,
+  id: 0,
   name: "",
   lastName: "",
   email: "",
-  gender: "",
+  gender: "Male",
   hobbies: [],
   status: "",
   note: "",
@@ -45,7 +45,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
 
   const handleSubmit = () => {
     onSubmit(formData);
-    console.log(formData)
+    console.log(formData);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +79,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
       </Typography>
 
       <Paper sx={{ margin: 2, padding: 2 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <Grid size={6}>
             <TextField
               fullWidth
@@ -126,7 +126,7 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
             />
           </Grid>
 
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 12, lg: 12,xl:5 }}>
             <FormControl>
               <FormLabel>Gender</FormLabel>
               <RadioGroup
@@ -136,24 +136,24 @@ export default function ProfileForm({ onSubmit }: ProfileformProps) {
                 onChange={handleInputChange}
               >
                 <FormControlLabel
-                  value="Female"
-                  control={<Radio />}
-                  label="Female"
-                />
-                <FormControlLabel
                   value="Male"
                   control={<Radio />}
                   label="Male"
                 />
                 <FormControlLabel
-                  value="Other"
+                  value="Female"
                   control={<Radio />}
-                  label="Other"
+                  label="Female"
+                />
+                <FormControlLabel
+                  value="Etc"
+                  control={<Radio />}
+                  label="Etc"
                 />
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 12, lg: 12,xl:7 }}>
             <FormControl>
               <FormLabel>Hobby</FormLabel>
               <RadioGroup row name="gender-radio-buttons-group">
